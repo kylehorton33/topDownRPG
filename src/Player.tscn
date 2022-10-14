@@ -181,26 +181,26 @@ blend_point_3/node = SubResource( 16 )
 blend_point_3/pos = Vector2( 0, -1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "run_left"
-
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "run_down"
 
 [sub_resource type="AnimationNodeAnimation" id=21]
 animation = "run_right"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
-animation = "run_down"
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "run_left"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "run_up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=18]
-blend_point_0/node = SubResource( 19 )
-blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 20 )
-blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 21 )
-blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 22 )
+blend_point_0/node = SubResource( 20 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 21 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 25 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 26 )
 blend_point_3/pos = Vector2( 0, -1 )
 blend_mode = 1
 
@@ -214,6 +214,7 @@ states/Idle/position = Vector2( 579, 149.667 )
 states/Run/node = SubResource( 18 )
 states/Run/position = Vector2( 749.667, 150.556 )
 transitions = [ "Idle", "Run", SubResource( 23 ), "Run", "Idle", SubResource( 24 ) ]
+start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
@@ -224,7 +225,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, -14 )
 texture = ExtResource( 2 )
 hframes = 60
-frame = 12
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2, -6 )
@@ -248,4 +249,4 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 12 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
-parameters/Run/blend_position = Vector2( 0, 0 )
+parameters/Run/blend_position = Vector2( 0.000585437, -0.00867057 )
