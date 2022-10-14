@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Bush.tscn" type="PackedScene" id=3]
+
+[node name="World" type="YSort"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 64, 24 )
+
+[node name="Bush2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 104, 24 )
+
+[node name="Bush" parent="." instance=ExtResource( 3 )]
+position = Vector2( 32, 64 )
+
+[node name="Bush3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 24, 8 )
