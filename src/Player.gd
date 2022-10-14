@@ -4,10 +4,8 @@ const ACCELERATION = 500
 const FRICTION = 500
 const MAX_SPEED = 80
 
-
 var velocity = Vector2.ZERO
 onready var animation_player = $AnimationPlayer
-
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
