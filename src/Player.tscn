@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://src/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Action RPG Resources/Player/Player.png" type="Texture" id=2]
@@ -545,6 +545,31 @@ min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "roll_left"
+
+[sub_resource type="AnimationNodeAnimation" id=47]
+animation = "roll_down"
+
+[sub_resource type="AnimationNodeAnimation" id=48]
+animation = "roll_right"
+
+[sub_resource type="AnimationNodeAnimation" id=49]
+animation = "roll_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=43]
+blend_point_0/node = SubResource( 46 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 47 )
+blend_point_1/pos = Vector2( 0, 1.1 )
+blend_point_2/node = SubResource( 48 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 49 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "run_down"
 
@@ -576,14 +601,20 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
 [sub_resource type="AnimationNodeStateMachine" id=11]
 states/Attack/node = SubResource( 35 )
 states/Attack/position = Vector2( 533.222, 188 )
 states/Idle/node = SubResource( 17 )
 states/Idle/position = Vector2( 533.667, 95 )
+states/Roll/node = SubResource( 43 )
+states/Roll/position = Vector2( 351, 96.1975 )
 states/Run/node = SubResource( 18 )
 states/Run/position = Vector2( 757.667, 93.8148 )
-transitions = [ "Idle", "Run", SubResource( 23 ), "Run", "Idle", SubResource( 24 ), "Idle", "Attack", SubResource( 36 ), "Attack", "Idle", SubResource( 37 ) ]
+transitions = [ "Idle", "Run", SubResource( 23 ), "Run", "Idle", SubResource( 24 ), "Idle", "Attack", SubResource( 36 ), "Attack", "Idle", SubResource( 37 ), "Idle", "Roll", SubResource( 44 ), "Roll", "Idle", SubResource( 45 ) ]
 start_node = "Idle"
 graph_offset = Vector2( 32, 29 )
 
@@ -633,6 +664,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 12 )
 parameters/Attack/blend_position = Vector2( -0.00165564, 0.294643 )
 parameters/Idle/blend_position = Vector2( -0.00165564, 0.294643 )
+parameters/Roll/blend_position = Vector2( -0.00827813, -0.0507812 )
 parameters/Run/blend_position = Vector2( 0.113135, 0.267857 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
