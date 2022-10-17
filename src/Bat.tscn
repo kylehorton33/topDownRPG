@@ -49,6 +49,7 @@ script = ExtResource( 4 )
 position = Vector2( 0, -12 )
 frames = SubResource( 1 )
 animation = "fly"
+frame = 2
 playing = true
 
 [node name="ShadowSprite" type="Sprite" parent="."]
@@ -65,8 +66,8 @@ position = Vector2( 0, -13 )
 shape = SubResource( 8 )
 
 [node name="Stats" parent="." instance=ExtResource( 5 )]
-max_health = 3
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 
 [editable path="Hurtbox"]
