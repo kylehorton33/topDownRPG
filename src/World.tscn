@@ -506,7 +506,7 @@ tile_data = PoolIntArray( -1, 0, 4, -65536, 0, 196609, -65535, 0, 196609, -65534
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 64, 24 )
+position = Vector2( 152, 120 )
 
 [node name="Bushes" type="YSort" parent="YSort"]
 
@@ -557,8 +557,14 @@ position = Vector2( 176, 160 )
 [node name="Bat" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 80, 80 )
 
-[node name="Bat2" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 144, 176 )
-
 [node name="Bat3" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 248, 72 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "HP = 4"
