@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://assets/Action RPG Resources/World/GrassBackground.png" type="Texture" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/Tree.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/Action RPG Resources/Music and Sounds/Music.mp3" type="AudioStream" id=10]
 [ext_resource path="res://src/Sign.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/BatUI.tscn" type="PackedScene" id=12]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -597,6 +598,8 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 8.0
 margin_bottom = 8.0
+
+[node name="BatUI" parent="CanvasLayer" instance=ExtResource( 12 )]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )

@@ -6,7 +6,7 @@ export var message = "Add message here"
 
 onready var interaction_area = $InteractionArea
 
-func _on_InteractionArea_body_entered(body):
+func _on_InteractionArea_body_entered(_body):
 	var sign_tip = SignTip.instance()
 	get_tree().current_scene.add_child(sign_tip)
 	sign_tip.set_label_text(message)
