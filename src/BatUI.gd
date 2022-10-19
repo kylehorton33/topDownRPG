@@ -13,3 +13,4 @@ func update_label():
 func on_bat_killed():
 	game_control.killed_bats += 1
 	update_label()
+	game_control.check_win()
