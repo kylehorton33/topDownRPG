@@ -2,4 +2,4 @@ extends CanvasLayer
 
 
 func _on_Button_pressed():
-	get_tree().reload_current_scene()
+	var _reload_error = get_tree().reload_current_scene()
