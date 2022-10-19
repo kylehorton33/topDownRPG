@@ -43,8 +43,7 @@ func _physics_process(delta):
 				state = pick_random_state([IDLE, WANDER])
 				wander_controller.start_wander_timer(rand_range(1, 3))
 				
-			var direction = global_position.direction_to(wander_controller.target_position)
-			velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+			accelerate_towards_position(wander_controller.target_position, delta)
 			
 			if global_position.distance_to(wander_controller.target_position) <= WANDER_TARGET_RANGE:
 				state = pick_random_state([IDLE, WANDER])
@@ -53,15 +52,19 @@ func _physics_process(delta):
 		CHASE:
 			var player = player_detection_zone.player
 			if player != null:
-				var direction = global_position.direction_to(player.global_position)
-				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+				accelerate_towards_position(player.global_position, delta)
 			else:
 				state = IDLE
 	
-	sprite.flip_h = velocity.x < 0
+	
 	if soft_collision.is_colliding():
 		velocity += soft_collision.get_push_vector() * delta * 400
 	velocity = move_and_slide(velocity)
+
+func accelerate_towards_position(position, delta):
+	var direction = global_position.direction_to(position)
+	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+	sprite.flip_h = velocity.x < 0
 
 func seek_player():
 	if player_detection_zone.can_see_player():
