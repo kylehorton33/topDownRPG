@@ -512,6 +512,7 @@ position = Vector2( 152, 120 )
 
 [node name="Camera2D" type="Camera2D" parent="YSort/Player"]
 current = true
+smoothing_enabled = true
 
 [node name="Bushes" type="YSort" parent="YSort"]
 
