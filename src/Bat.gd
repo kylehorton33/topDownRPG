@@ -13,6 +13,7 @@ var velocity = Vector2.ZERO
 var knockback = Vector2.ZERO
 
 var state = CHASE
+onready var game_control = get_tree().current_scene.get_node("/root/GameControl")
 
 onready var sprite = $AnimatedSprite
 onready var stats = $Stats
@@ -20,6 +21,8 @@ onready var player_detection_zone = $PlayerDetectionZone
 onready var hurtbox = $Hurtbox
 onready var soft_collision = $SoftCollision
 onready var wander_controller = $WanderController
+
+signal bat_killed
 
 func _ready():
 	state = pick_random_state([IDLE, WANDER])
@@ -84,3 +87,4 @@ func _on_Stats_no_health():
 	var enemyDeathEffect = EnemyDeathEffect.instance()
 	get_parent().add_child(enemyDeathEffect)
 	enemyDeathEffect.global_position = global_position
+	game_control.emit_signal("bat_killed")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://assets/Action RPG Resources/World/GrassBackground.png" type="Texture" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/Action RPG Resources/Music and Sounds/Music.mp3" type="AudioStream" id=10]
 [ext_resource path="res://src/Sign.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/BatUI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/GameControl.tscn" type="PackedScene" id=13]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -489,6 +490,18 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [node name="World" type="Node2D"]
 
+[node name="GameUI" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="GameUI" instance=ExtResource( 8 )]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
+
+[node name="BatUI" parent="GameUI" instance=ExtResource( 12 )]
+
+[node name="GameControl" parent="." instance=ExtResource( 13 )]
+
 [node name="GrassyBackground" type="Sprite" parent="."]
 position = Vector2( 160, 90 )
 texture = ExtResource( 1 )
@@ -590,16 +603,6 @@ remote_path = NodePath("../../../Camera2D")
 [node name="Sign" parent="YSort" instance=ExtResource( 11 )]
 position = Vector2( 152, 168 )
 message = "Press SPACE to attack enemies or grass"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 8 )]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 8.0
-margin_bottom = 8.0
-
-[node name="BatUI" parent="CanvasLayer" instance=ExtResource( 12 )]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
