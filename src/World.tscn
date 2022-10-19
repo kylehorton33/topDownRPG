@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://assets/Action RPG Resources/World/GrassBackground.png" type="Texture" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/Bat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/HealthUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Tree.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Action RPG Resources/Music and Sounds/Music.mp3" type="AudioStream" id=10]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -582,3 +583,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 8.0
 margin_bottom = 8.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
