@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const PlayerHurtSound = preload("res://src/PlayerHurtSound.tscn")
+const GameOver = preload("res://src/GameOver.tscn")
 
 const ACCELERATION = 500
 const FRICTION = 500
@@ -23,7 +24,8 @@ onready var blink_animation_player = $BlinkAnimation
 
 func _ready():
 	randomize()
-	stats.connect("no_health", self, "queue_free")
+	stats.set_health(stats.max_health)
+	stats.connect("no_health", self, "player_death")
 	animation_tree.active = true
 	sword_hitbox.knockback_vector = roll_vector
 
@@ -95,3 +97,9 @@ func _on_Hurtbox_invincibility_started():
 
 func _on_Hurtbox_invincibility_ended():
 	blink_animation_player.play("stop")
+	
+func player_death():
+	queue_free()
+	var game_over = GameOver.instance()
+	get_tree().current_scene.add_child(game_over)
+	
