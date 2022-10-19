@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Action RPG Resources/Player/Player.png" type="Texture" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://src/SwordHitbox.gd" type="Script" id=4]
 [ext_resource path="res://src/Hurtbox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/Action RPG Resources/Music and Sounds/Swipe.wav" type="AudioStream" id=6]
+[ext_resource path="res://src/Player.gdshader" type="Shader" id=7]
+
+[sub_resource type="ShaderMaterial" id=54]
+shader = ExtResource( 7 )
+shader_param/active = false
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.0
@@ -686,11 +691,48 @@ height = 12.0
 radius = 5.0
 height = 6.0
 
+[sub_resource type="Animation" id=55]
+length = 0.001
+
+[sub_resource type="Animation" id=51]
+resource_name = "start"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 54 )
 position = Vector2( 0, -14 )
 texture = ExtResource( 2 )
 hframes = 60
@@ -751,7 +793,15 @@ shape = SubResource( 50 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="BlinkAnimation" type="AnimationPlayer" parent="."]
+reset_on_save = false
+anims/RESET = SubResource( 55 )
+anims/start = SubResource( 51 )
+anims/stop = SubResource( 52 )
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]
 
 [editable path="HitboxPivot/SwordHitbox"]
 [editable path="Hurtbox"]
